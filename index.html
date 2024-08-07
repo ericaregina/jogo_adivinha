@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhe o Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Adivinhe o Número</h1>
+    <p>Tente adivinhar o número entre 1 e 100:</p>
+    <input type="number" id="inputNumero" min="1" max="100">
+    <button onclick="adivinharNumero()">Adivinhar</button>
+    <div id="resultado"></div>
+    <script>
+        // Gerar um número aleatório entre 1 e 100
+        let numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+
+        function adivinharNumero() {
+            // Obter o valor do input
+            const input = document.getElementById('inputNumero');
+            const numeroUsuario = parseInt(input.value, 10);
+            const resultado = document.getElementById('resultado');
+            
+            // Verificar a adivinhação
+            if (isNaN(numeroUsuario) || numeroUsuario < 1 || numeroUsuario > 100) {
+                resultado.textContent = 'Por favor, insira um número entre 1 e 100.';
+            } else if (numeroUsuario < numeroAleatorio) {
+                resultado.textContent = 'O número é maior. Tente novamente!';
+            } else if (numeroUsuario > numeroAleatorio) {
+                resultado.textContent = 'O número é menor. Tente novamente!';
+            } else {
+                resultado.textContent = 'Parabéns! Você acertou o número!';
+                // Gerar um novo número para o próximo jogo
+                numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+            }
+        }
+    </script>
+</body>
+</html>
+
+</body>
+</html>
